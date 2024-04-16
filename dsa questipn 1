@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+
+    static long calculateP(long[] values, int index) {
+        if (index >= values.length) {
+            return 0;
+        }
+
+        int leftChildIndex = 2 * index + 1;
+        int rightChildIndex = 2 * index + 2;
+
+        // Recursively calculate P for left and right children
+        long leftP = calculateP(values, leftChildIndex);
+        long rightP = calculateP(values, rightChildIndex);
+
+        // If the current node is a leaf, return its value
+        if (leftChildIndex >= values.length || rightChildIndex >= values.length) {
+            return values[index];
+        } else {
+            // Calculate P for non-leaf node
+            return Math.max(values[index] * leftP, values[index] * rightP);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            int H = scanner.nextInt();
+            if (H == 0) {
+                break;
+            }
+            int n = (int) Math.pow(2, H) - 1;
+            long[] values = new long[n];
+            for (int i = 0; i < n; i++) {
+                values[i] = scanner.nextLong();
+            }
+            long result = calculateP(values, 0); // Start from the root node (index 0)
+            System.out.println(result);
+        }
+        scanner.close();
+    }
+}
