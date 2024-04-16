@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class FoodCosts {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input cost of mess food per day (X) and cost of restaurant splurges per day (Y)
+        System.out.print("Enter the cost of mess food per day (X): ");
+        int X = scanner.nextInt();
+        System.out.print("Enter the cost of restaurant splurges per day (Y): ");
+        int Y = scanner.nextInt();
+
+        // Calculate the total weekly food cost
+        int totalCost = (X * 6) + Y;
+
+        // Output the total weekly food cost
+        System.out.println("Total weekly food cost: Rs. " + totalCost);
+
+        scanner.close();
+    }
+}
